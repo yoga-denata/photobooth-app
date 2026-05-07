@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Photo Booth</title>
+
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+
+  <!-- MENU SESSION -->
+  <div id="menu">
+    <h1>Photo Booth Setup</h1>
+
+    <label>Pilih Durasi Sesi:</label><br><br>
+
+    <select id="duration">
+      <option value="600">10 menit</option>
+      <option value="1200">20 menit</option>
+    </select>
+
+    <br><br>
+    <button onclick="startSession()">Start Session</button>
+  </div>
+
+  <!-- CAMERA AREA -->
+  <div id="cameraSection" style="display:none;">
+
+  <!-- HEADER -->
+  <div>
+    <h2 id="sessionName">Session</h2>
+    <h3>Sisa Waktu: <span id="timer">00:00</span></h3>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div style="display:flex; gap:20px;">
+
+    <!-- CAMERA -->
+    <div id="cameraArea">
+      <div class="preview-box">
+        <video id="camera" autoplay playsinline></video>
+      </div>
+      <br><br>
+      <button onclick="takePhoto()">Capture</button>
+    </div>
+
+    <!-- PREVIEW -->
+    <div id="previewArea">
+      <canvas id="previewCanvas" style="border:1px solid #ccc;"></canvas>
+      <br><br>
+      <button onclick="savePhoto()">Simpan</button>
+      <button onclick="retakePhoto()">Foto Ulang</button>
+    </div>
+
+  </div>
+
+  <!-- CONTROLS (DIPISAH JELAS) -->
+  <div id="controlPanel" style="margin-top:20px;">
+    <button onclick="openAddModal()">+ Tambah Waktu</button>
+    <button onclick="endSession()">Akhiri Sesi</button>
+    <button onclick="backToMenu()">Kembali</button>
+  </div>
+
+</div>
+
+  <canvas id="canvas" style="display:none;"></canvas>
+
+  <script src="renderer.js"></script>
+
+  <!-- POPUP TAMBAH SESI -->
+<div id="addSessionModal" style="
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.5);
+  justify-content:center;
+  align-items:center;
+">
+
+  <div style="
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    min-width:250px;
+  ">
+    <h2>Tambah Sesi</h2>
+
+    <select id="addDuration">
+      <option value="600">10 menit</option>
+      <option value="1200">20 menit</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="confirmAddTime()">Tambah</button>
+    <button onclick="closeAddModal()">Batal</button>
+  </div>
+</div>
+
+  <!-- POPUP ERROR -->
+<div id="errorModal" style="
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.5);
+  justify-content:center;
+  align-items:center;
+">
+
+  <div style="
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    min-width:280px;
+  ">
+    <h2>Camera Error</h2>
+
+    <p id="errorMessage"></p>
+
+    <br>
+    <button onclick="handleErrorClose()">Kembali</button>
+  </div>
+</div>
+
+<!-- LOADING SCREEN -->
+<div id="loadingScreen" style="
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:black;
+  color:white;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+">
+
+  <h2>Menyiapkan Kamera...</h2>
+  <p id="loadingStatus">Menghubungkan ke kamera</p>
+
+</div>
+
+</body>
+</html>

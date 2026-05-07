@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #111;
+  color: white;
+}
+
+/* layout utama */
+#cameraSection {
+  padding: 20px;
+}
+
+/* container utama kiri-kanan */
+#cameraSection > div:nth-child(2) {
+  display: flex;
+  gap: 20px;
+}
+
+/* KOTAK PREVIEW (INI YANG KAMU MAU) */
+.preview-box {
+  width: 800px;
+  height: 600px;
+  background: black;
+  overflow: hidden;
+  position: relative;
+}
+
+/* VIDEO DI DALAMNYA */
+#camera {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+/* PREVIEW HASIL FOTO */
+#previewCanvas {
+  width: 400px;
+  border: 1px solid #ccc;
+  background: black;
+}
+
+/* tombol biar rapi */
+button {
+  padding: 10px 16px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+}
+
+/* section kanan */
+#previewArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

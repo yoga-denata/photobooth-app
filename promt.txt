@@ -1,0 +1,7 @@
+saya ingin develop aplikasi desktop photobooth dengan model bisnis subscription
+
+fitur yang akan saya buat :
+1. koneksi wirelees atau usb ke perangkat kamera eksternal (dslr dan jenis kamera lain)
+2. simpan hasil foto ke cloud dan generate qris untuk lihat file foto customer setiap sesi
+3. pilihan kanvas ada photo card, strip, 4r, dan lain-lain nanti kalo mau nambah kanvas
+4. 
