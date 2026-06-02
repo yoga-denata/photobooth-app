@@ -11,15 +11,15 @@
   </head>
 <body>
 
-  <!-- MENU SESSION -->
+  <!-- SESSION MENU -->
   <div id="menu">
     <h1>Photo Booth Setup</h1>
 
-    <label>Pilih Durasi Sesi:</label><br><br>
+    <label>Select Session Duration:</label><br><br>
 
     <select id="duration">
-      <option value="600">10 menit</option>
-      <option value="1200">20 menit</option>
+      <option value="600">10 minutes</option>
+      <option value="1200">20 minutes</option>
     </select>
 
     <br><br>
@@ -32,7 +32,7 @@
   <!-- HEADER -->
   <div>
     <h2 id="sessionName">Session</h2>
-    <h3>Sisa Waktu: <span id="timer">00:00</span></h3>
+    <h3>Remaining Time: <span id="timer">00:00</span></h3>
   </div>
 
   <!-- MAIN CONTENT -->
@@ -51,17 +51,17 @@
     <div id="previewArea">
       <canvas id="previewCanvas" style="border:1px solid #ccc;"></canvas>
       <br><br>
-      <button onclick="savePhoto()">Simpan</button>
-      <button onclick="retakePhoto()">Foto Ulang</button>
+      <button onclick="savePhoto()">Save</button>
+      <button onclick="retakePhoto()">Retake Photo</button>
     </div>
 
   </div>
 
-  <!-- CONTROLS (DIPISAH JELAS) -->
+  <!-- CONTROLS (CLEARLY SEPARATED) -->
   <div id="controlPanel" style="margin-top:20px;">
-    <button onclick="openAddModal()">+ Tambah Waktu</button>
-    <button onclick="endSession()">Akhiri Sesi</button>
-    <button onclick="backToMenu()">Kembali</button>
+    <button onclick="openAddModal()">+ Add Time</button>
+    <button onclick="endSession()">End Session</button>
+    <button onclick="backToMenu()">Back</button>
   </div>
 
 </div>
@@ -70,7 +70,7 @@
 
   <script src="renderer.js"></script>
 
-  <!-- POPUP TAMBAH SESI -->
+  <!-- ADD SESSION POPUP -->
 <div id="addSessionModal" style="
   display:none;
   position:fixed;
@@ -88,21 +88,21 @@
     text-align:center;
     min-width:250px;
   ">
-    <h2>Tambah Sesi</h2>
+    <h2>Add Session</h2>
 
     <select id="addDuration">
-      <option value="600">10 menit</option>
-      <option value="1200">20 menit</option>
+      <option value="600">10 minutes</option>
+      <option value="1200">20 minutes</option>
     </select>
 
     <br><br>
 
-    <button onclick="confirmAddTime()">Tambah</button>
-    <button onclick="closeAddModal()">Batal</button>
+    <button onclick="confirmAddTime()">Add</button>
+    <button onclick="closeAddModal()">Cancel</button>
   </div>
 </div>
 
-  <!-- POPUP ERROR -->
+  <!-- ERROR POPUP -->
 <div id="errorModal" style="
   display:none;
   position:fixed;
@@ -125,7 +125,7 @@
     <p id="errorMessage"></p>
 
     <br>
-    <button onclick="handleErrorClose()">Kembali</button>
+    <button onclick="handleErrorClose()">Back</button>
   </div>
 </div>
 
@@ -142,8 +142,8 @@
   flex-direction:column;
 ">
 
-  <h2>Menyiapkan Kamera...</h2>
-  <p id="loadingStatus">Menghubungkan ke kamera</p>
+  <h2>Preparing Camera...</h2>
+  <p id="loadingStatus">Connecting to camera...</p>
 
 </div>
 

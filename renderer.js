@@ -3,7 +3,7 @@ const PREVIEW_WIDTH = 800;
 const PREVIEW_HEIGHT = 600;
 const SCALE = 3;
 
-// nyalakan kamera
+// start camera
 function startCamera() {
   const video = document.getElementById('camera');
 
@@ -32,7 +32,7 @@ let capturedImage = null;
 function checkCameraAndStart() {
   const status = document.getElementById("loadingStatus");
 
-  status.innerText = "Mengakses kamera...";
+  status.innerText = "Accessing camera...";
 
   navigator.mediaDevices.getUserMedia({
     video: {
@@ -42,12 +42,12 @@ function checkCameraAndStart() {
     }
   })
     .then(stream => {
-      status.innerText = "Kamera siap";
+      status.innerText = "Camera ready";
 
       const video = document.getElementById("camera");
       video.srcObject = stream;
 
-      // tunggu sebentar biar benar-benar ready
+      // wait a moment to make sure it's fully ready
       setTimeout(() => {
         document.getElementById("loadingScreen").style.display = "none";
         document.getElementById("cameraSection").style.display = "block";
@@ -57,7 +57,7 @@ function checkCameraAndStart() {
       }, 1000);
     })
     .catch(err => {
-      showError("Kamera tidak dapat diakses.\n\nKemungkinan:\n- Kamera tidak terhubung\n- Izin kamera ditolak\n- Kamera sedang digunakan aplikasi lain");
+      showError("Camera cannot be accessed.\n\nPossibilities:\n- Camera is not connected\n- Camera permission denied\n- Camera is being used by another application");
 
       document.getElementById("loadingScreen").style.display = "none";
       document.getElementById("menu").style.display = "block";
@@ -82,7 +82,7 @@ function startSession() {
   sessionDuration = parseInt(durationSelect.value);
   remainingTime = sessionDuration;
 
-  // tampilkan loading screen
+  // display loading screen
   document.getElementById("menu").style.display = "none";
   document.getElementById("loadingScreen").style.display = "flex";
 
@@ -95,7 +95,7 @@ function startTimer() {
   timerInterval = setInterval(() => {
     remainingTime--;
 
-    console.log("Sisa:", remainingTime); // debug
+    console.log("Remaining:", remainingTime); // debug
 
     updateTimerDisplay();
 
@@ -115,23 +115,23 @@ function updateTimerDisplay() {
 }
 
 function addTime() {
-  remainingTime += 300; // tambah 5 menit
+  remainingTime += 300; // add 5 minutes
 }
 
-// fungsi capture
+// capture function
 function takePhoto() {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
 
   if (video.videoWidth === 0) {
-    showError("Kamera belum siap digunakan.\n\nKemungkinan penyebab:\n- Kamera masih loading\n- Kamera sedang digunakan aplikasi lain\n- Izin kamera belum diberikan");
+    showError("Camera is not ready to be used yet.\n\nPossible causes:\n- Camera is still loading\n- Camera is being used by another application\n- Camera permission has not been granted");
       return;
   }
 
   canvas.width = PREVIEW_WIDTH * SCALE;
   canvas.height = PREVIEW_HEIGHT * SCALE;
 
-  // mirror hasil foto
+  // mirror the photo
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
 
@@ -157,10 +157,10 @@ function takePhoto() {
   const filename = `photo_${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}.png`;
 
 
-  // download
+  // save image reference
   capturedImage = image;
 
-  // tampilkan ke preview
+  // display in preview
   const previewCanvas = document.getElementById('previewCanvas');
   const previewCtx = previewCanvas.getContext('2d');
 
@@ -191,7 +191,7 @@ function takePhoto() {
   img.src = image;
 }
 
-// fungsi tombol simpan
+// save button function
 function savePhoto() {
   if (!capturedImage) return;
 
@@ -232,7 +232,7 @@ function backToMenu() {
   document.getElementById("menu").style.display = "block";
 }
 
-// fungsi pop up
+// popup functions
 function openAddModal() {
   document.getElementById("addSessionModal").style.display = "flex";
 }
@@ -249,7 +249,7 @@ function confirmAddTime() {
   closeAddModal();
 }
 
-// fungsi show error
+// show error function
 function showError(message) {
   document.getElementById("errorMessage").innerText = message;
   document.getElementById("errorModal").style.display = "flex";
@@ -258,7 +258,7 @@ function showError(message) {
 function handleErrorClose() {
   document.getElementById("errorModal").style.display = "none";
 
-  // kembali ke menu
+  // return to menu
   clearInterval(timerInterval);
 
   document.getElementById("cameraSection").style.display = "none";
